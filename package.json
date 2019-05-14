@@ -1,0 +1,8 @@
+{
+  "name": "utils-deep-clone",
+  "version": "0.0.1",
+  "description": "Deep clones any json datatype",
+  "main": "./lib",
+  "author": "Atishay Jain",
+  "license": "MIT"
+}
