@@ -1,8 +1,20 @@
 {
   "name": "utils-deep-clone",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Deep clones any json datatype",
   "main": "./lib",
-  "author": "Atishay Jain",
+  "keywords": [
+    "deep-clone",
+    "winston-logger",
+    "winston-logger-error"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/atishay96/utils-deep-clone"
+  },
+  "author": {
+    "name": "Atishay Jain",
+    "url": "https://atishay96.github.io/"
+  },
   "license": "MIT"
 }
