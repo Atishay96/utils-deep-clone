@@ -1,6 +1,7 @@
 # utils-deep-clone
 Deep clones any `json` datatype
 
+[![NPM](https://nodei.co/npm/utils-deep-clone.png?mini=true)](https://nodei.co/npm/utils-deep-clone/)
 
 ## Installation
 
