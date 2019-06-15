@@ -1,6 +1,6 @@
 {
   "name": "utils-deep-clone",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Deep clones any json datatype",
   "main": "./lib",
   "keywords": [
