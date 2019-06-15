@@ -1,9 +1,9 @@
-# utils-deep-clone
+*# utils-deep-clone*
 Deep clones any `json` datatype
 
-[![NPM](https://nodei.co/npm/utils-deep-clone.png?mini=true)](https://nodei.co/npm/utils-deep-clone/)
+[![NPM](https://nodei.co/npm/utils-deep-clone.png?mini=true)](_https://nodei.co/npm/utils-deep-clone/_)
 
-## Installation
+*## Installation*
 
 ``` bash
 yarn add utils-deep-clone
@@ -13,12 +13,12 @@ yarn add utils-deep-clone
 npm install utils-deep-clone
 ```
 
-## Motivation
+*## Motivation*
 
-`utils-deep-clone` is designed specifically for [winstonJS](https://github.com/winstonjs/winston/) but it can be used wheresoever required. [WinstonJS](https://github.com/winstonjs/winston/) have an open bug that if you pass `Error` data type nested inside `Object` or nested inside any other data type then because `Error` being enumerable it won't get printed in logs. So to handle this here's a workaround. Just call `toJSON` function before calling `winston.log` and pass the response object in it. An example for this is given at the bottom.
+`utils-deep-clone` is designed specifically for [winstonJS](_https://github.com/winstonjs/winston/_) but it can be used wheresoever required. [WinstonJS](_https://github.com/winstonjs/winston/_) have an open bug that if you pass `Error` data type nested inside `Object` or nested inside any other data type then because `Error` being enumerable it won’t get printed in logs. So to handle this here’s a workaround. Just call `toJSON` function before calling `winston.log` and pass the response object in it. An example for this is given at the bottom.
 
 
-# Normal DeepCloning - THE NEED
+*# Normal DeepCloning - THE NEED*
 
 ```javascript
   const someError = new Error('Something wrong happened')
@@ -38,16 +38,16 @@ npm install utils-deep-clone
   console.log(JSON.parse(JSON.stringify(obj)))
 ```
 
-**Response**:
+***Response***:
 ```
 { someError: {},
   nestedValue: { someError2: {} },
   arrayValue: [ 'value1', 'value2', { someData: 'Some data', isActive: true } ] }
 ```
 
-Error is not getting printed because of it's enumerable property.
+Error is not getting printed because of it’s enumerable property.
 
-# Usage - THE SOLUTION
+*# Usage - THE SOLUTION*
 
 Now doing the same thing with `utils-deep-clone`
 
@@ -68,14 +68,10 @@ Now doing the same thing with `utils-deep-clone`
     },
     arrayValue: ['value1' ,'value2', someError3]
   }
-  toJSON(obj).then((newObj)=>{
-    console.log(newObj)
-  }).catch(error => {
-    // handle error
-  })
+  console.log(toJSON(obj))
 ```
 
-**Response:**
+***Response:***
 ```
 { someError: 
    { message: 'Something wrong happened',
@@ -94,7 +90,7 @@ Now doing the same thing with `utils-deep-clone`
 ```
 
 
-## Debugging
+*## Debugging*
 
 ```javascript
   const { toJSON, debug } = require('utils-deep-clone')
@@ -104,18 +100,13 @@ Now doing the same thing with `utils-deep-clone`
   
   const someError = new Error('Something wrong happened')
 
-  toJSON(someError, (err, newObj) => {
-    if (err) {
-      // handle error
-    }
-    // do something
-  })
+  console.log(toJSON(someError))
 ```
 
 
-# Winston Bug
+*# Winston Bug*
 
-Here's the example from `winston 2.x` but the same bug exists in `winston 3.x` also.
+Here’s the example from `winston 2.x` but the same bug exists in `winston 3.x` also.
 
 ```javascript
 const winston = require('winston')
@@ -137,13 +128,13 @@ log('Testing few bugs', testObj)
 
 ```
 
-**Response:**
+***Response:***
 ```
 info: Testing few bugs
 ```
 
 
-Now, we'll be also using `utils-deep-clone`
+Now, we’ll be also using `utils-deep-clone`
 
 ```javascript
 const winston = require('winston')
@@ -155,9 +146,9 @@ const winstonLogger = new (winston.Logger)({
   ]
 })
 
-const log = async (message, payload) => {
+const log = (message, payload) => {
   try {
-    payload = await toJSON(payload)
+    payload = toJSON(payload)
     return winstonLogger.log('info', message, payload)
   } catch(error) {
     console.error('some error occured while consoling')
@@ -173,7 +164,7 @@ log('Testing few bugs', testObj)
 ```
 
 
-**Response:**
+***Response:***
 ```
 info: Testing few bugs message=It should work, stack=Error: It should work
     at Object.<anonymous> (/Users/atishay/Desktop/utils-error-deep-log/logger.js:20:10)
